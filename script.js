@@ -4,19 +4,19 @@ const STORE = {
       amount: 10,
       category: "Shopping",
       description: "Nintendo Switch",
-      createdDate: new Date("2020-01-27"),
+      createdDate: new Date("2020-01-23"),
     },
     {
       amount: 20,
       category: "Shopping",
       description: "MacBook Pro 2020",
-      createdDate: new Date("2020-01-27"),
+      createdDate: new Date("2020-01-24"),
     },
     {
       amount: 30,
       category: "Shopping",
       description: "Iphone 12",
-      createdDate: new Date("2020-01-27"),
+      createdDate: new Date("2020-01-26"),
     },
   ],
 };
@@ -35,6 +35,7 @@ function renderListItem(spend, index){
 }
 
 function renderList() {
+  STORE.spends.sort((a,b) => b.createdDate - a.createdDate);
   return `
   <h2 class="js-title">Expenses</h2>
   <ul class="content__list">
@@ -47,17 +48,17 @@ function renderList() {
 
 function renderForm() {
   return `
-  <h2>New Expense</h2>
+  <h2 class="js-form-title">New Expense</h2>
   <form action="" class="js-form content__form">
-    <div>
+    <div class="form-input">
       <label for="">Amount</label>
-      <input type="number" name="amount">
+      <input name="amount">
     </div>
-    <div>
+    <div class="form-input">
       <label for="">Category</label>
       <input type="text" name="category">
     </div>
-    <div>
+    <div class="form-input">
       <label for="">Description</label>
       <input type="text" name="description">
     </div>
@@ -98,6 +99,7 @@ function listenFormSubmit(){
         createdDate: new Date(),
       })
       content.innerHTML = renderList();
+      init();
     }
   });
 }
@@ -109,6 +111,7 @@ function listenCancelClick() {
     if (target == e.target) {
       e.preventDefault();
       content.innerHTML = renderList();
+      init();
     }
   });
 }
