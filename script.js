@@ -81,6 +81,7 @@ function listenDeleteClick(){
         });
         console.log(STORE.spends);
         content.innerHTML = renderList();
+        init();
       }
     });
   });
